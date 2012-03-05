@@ -3,10 +3,10 @@
 
 
 /* TEAM */
-  <your title>: <your name>
-  Site:
-  Twitter:
-  Location:
+  <your title>: Noah Laux
+  Site: 
+  Twitter: noahlaux
+  Location: Denmark
 
 /* THANKS */
   Names (& URL):

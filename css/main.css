@@ -1,0 +1,20 @@
+header {
+	height: 100px;
+	background-color: red;
+	text-align: center;
+	margin: 10px;
+}
+
+.content {
+    height: 100px;
+	background-color: green;
+	text-align: center;
+	margin: 10px;
+}
+
+footer {
+	height: 100px;
+	background-color: blue;
+	text-align: center;
+	margin: 10px;
+}
