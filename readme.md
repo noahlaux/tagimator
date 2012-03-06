@@ -111,10 +111,23 @@ $( function(){
 ```
 
 ## Available event hooks
-* ```onFinish``` Fired when all transitions have finished
+
 * ```onBeforeStep( step, stack )``` Fired before a step is about to render, and pass the current step and stack as arguments
 * ```onAfterStep( step, stack )``` Fired when a step have been finished, and pass the current step and stack as arguments
+* ```onFinish``` Fired when all transitions have finished
 
+## The stack object
+
+```javascript
+{
+el:         {Object}, // HTML element
+fx:         {String}, // String with transition name (default: 'fade')
+speed:      {Number}, // fx speed (default: 1000)
+options:    {
+    direction:  {String}, // Direction of slide (default: 'left')
+    easing:     {String} // Easing to use (default: 'easeInOutCubic')
+}
+```
 
 ## Available attributes
 
