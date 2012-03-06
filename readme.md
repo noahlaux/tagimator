@@ -13,7 +13,7 @@ tagimator is a alternative approach to step based page element transitions, driv
 
 * Easy to use step based transitions (just basic HTML knowledge needed)
 * Dead simple setup, include a javascript file, execute one command and BAM!
-* Minified version comes build in with advanced features like easing
+* Minified version comes build in with advanced features like [easing](http://jqueryui.com/demos/effect/#easing)
 * Uses GPU accelerated transitions where possible for great perfomance across platforms (Mobile too!)
 * Download or build your own custom transision based on [jQuery UI effects plugins](http://jqueryui.com/demos/effect/) standard. The current available fx options are provided with the project for your convinience.
 
