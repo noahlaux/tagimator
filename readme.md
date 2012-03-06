@@ -48,6 +48,7 @@ $( function(){
 ```
 
 **JAVASCRIPT**
+
 For a little more advanced use:
 
 ```javascript
