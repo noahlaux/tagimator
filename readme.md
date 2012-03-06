@@ -1,4 +1,4 @@
-# tagimator
+### tagimator
 
 tagimator is a alternative approach to step based page transitions driven by special tag attributes in your HTML markup.
 
@@ -73,6 +73,7 @@ $( function(){
 
 ```data-fx```, ```data-fx-step```, ```data-fx-speed```, ```data-fx-direction```, ```data-fx-easing```
 
+## More info
 
 * Source: http://github.com/noahlaux/tagimator
 * Docs: http://github.com/noahlaux/tagimator/wiki
