@@ -11,13 +11,13 @@ tagimator is a alternative approach to step based page element transitions, driv
 
 ## Features
 
-* Easy to use step based transitions (just basic HTML knowledge needed)
+* Easy to use step based transitions (just basic HTML knowledge needed).
 * Dead simple setup, include a javascript file, execute one command and BAM!
-* Minified version comes build in with advanced features like [easing](http://jqueryui.com/demos/effect/#easing)
-* Uses GPU accelerated transitions where possible for great perfomance across platforms (Mobile too!)
+* Minified version comes build in with advanced features like [easing](http://jqueryui.com/demos/effect/#easing).
+* Uses GPU accelerated transitions where possible for great perfomance across platforms (Mobile too!).
 * Download or build your own custom transision based on [jQuery UI effects plugins](http://jqueryui.com/demos/effect/) standard. The current available fx options are provided with the project for your convinience.
 
-* Uses standard 'data' attributes, so no messy warnings in your IDE
+* Uses standard 'data' attributes, so no messy warnings in your IDE.
 * Oh did I mention it works splendid in all browsers you throw at it ???
 
 ## Quick start
@@ -125,12 +125,13 @@ When you hook into either ```onBeforeStep``` or ```onAfterStep``` you're passed 
 
 ```javascript
 {
-	el:         {Object}, // HTML element
-	fx:         {String}, // String with transition name (default: 'fade')
-	speed:      {Number}, // fx speed (default: 1000)
+	el:         {Object}, 		// HTML element
+	fx:         {String}, 		// Transition name (must be registered or you'll be warned) (default: 'fade')
+	speed:      {Number}, 		// fx speed (default: 1000)
 	options:    {
-	    direction:  {String}, // Direction of slide (default: 'left')
-	    easing:     {String} // Easing to use (default: 'easeInOutCubic')
+	    direction:  {String}, 	// Direction of slide (default: 'left')
+	    easing:     {String} 	// Easing to use (default: 'easeInOutCubic')
+	}
 }
 ```
 
