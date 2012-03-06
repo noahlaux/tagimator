@@ -44,7 +44,18 @@ Bla bla bla
 ```javascript
 $( function(){
 	$('body').tagimator('show');
-})
+});
+```
+
+**JAVASCRIPT**
+For a little more advanced use:
+
+```javascript
+$( function(){
+	$('body').tagimator('show', function() {
+		alert('All transitions done');
+	});
+});
 ```
 
 
