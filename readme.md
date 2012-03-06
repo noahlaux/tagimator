@@ -20,8 +20,6 @@ tagimator is a alternative approach to step based page element transitions, driv
 
 ## Quick start
 
-tagimator has two main simple methods ```show``` & ```hide```, which either runs the transitions and **show** the effected HTML elements, or **hide** them which, by default (can be changed by proving options), runs the transitions in the exact opposit order of which they were shown.
-
 **HTML**
 
 ```html
@@ -49,6 +47,8 @@ tagimator has two main simple methods ```show``` & ```hide```, which either runs
 ```
 
 **Javascript**
+
+tagimator has two main simple methods ```show``` & ```hide```, which either runs the transitions and **show** the effected HTML elements, or **hide** them which, by default (can be changed by proving options), runs the transitions in the exact opposit order of which they were shown.
 
 To start transitions on the above HTML simply include the following in your javascript:
 
