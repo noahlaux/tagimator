@@ -1,20 +1,57 @@
-header {
-	height: 100px;
-	background-color: red;
-	text-align: center;
+.transition-demo {
+	height: 500px;
+	width: 500px;
+	background-color: #000;
 	margin: 10px;
+	position: relative;
+}
+
+header {
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	line-height: 100px;
+	background-color: #700000;
+	text-align: center;
+	font-size: 3em;
+	font-weight: bold;
+	color: #FF9494;
 }
 
 .content {
     height: 100px;
-	background-color: green;
+    line-height: 100px;
+	background-color: orange;
+	color: #fff;
 	text-align: center;
-	margin: 10px;
+	overflow: hidden;
 }
 
+.content.dark {
+	background-color: #222;
+}
+
+	.content .inner {
+		width: 115px;
+		background-color: #444;
+		float: left;
+		margin: 5px;
+		line-height: 90px;
+		color: #fff;
+		height: 90px;
+	}
+
 footer {
+	position: absolute;
+	bottom:0;
+	left: 0;
+	right: 0;
 	height: 100px;
-	background-color: blue;
+	line-height: 100px;
+	background-color: #FE57A1;
+	color: #fff;
+	font-weight: bold;
 	text-align: center;
-	margin: 10px;
 }

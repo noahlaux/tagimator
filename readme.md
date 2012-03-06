@@ -27,8 +27,6 @@ see example here: [simple demo](http://jsfiddle.net/noahlaux/WveFK/)
 
 <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/noahlaux/WveFK/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-http://jsfiddle.net/noahlaux/WveFK/
-
 ```html
 <!doctype html>
 <body>
@@ -37,18 +35,18 @@ http://jsfiddle.net/noahlaux/WveFK/
 	</head>
 	<body>
 		<!-- standard transistion use default speed, easing etc -->
-		<div data-fx-step="1" data-fx="fade">
-			This is a box
+		<div data-fx-step="1" data-fx="fade" class="box">
+		    This is a box
 		</div>
 		<!-- Supports nested structures too -->
-		<div data-fx-step="1" data-fx="fade">
-			<div data-fx-step="2" data-fx="slide" data-fx-direction="left" data-fx-speed="2000">
-				This is a nested box
-			</div>
-			<div data-fx-step="2" data-fx="slide" data-fx-direction="right" data-fx-speed="2000">
-				This is a nested box 2
-			</div>
-		</div>
+		<div data-fx-step="2" data-fx="fade" class="box">
+		    <div data-fx-step="3" data-fx="slide" data-fx-direction="left" data-fx-speed="800" class="inner">
+		        Nested box
+		    </div>
+		    <div data-fx-step="3" data-fx="slide" data-fx-direction="right" data-fx-speed="800" class="inner">
+		        Nested box 2
+		    </div>
+		</div>​
 	</body>
 </html>
 ```
