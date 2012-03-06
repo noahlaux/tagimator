@@ -30,11 +30,13 @@
                 'method':       'show'
             }, options);
             
-            // Setup eventhandling
-            methods.onBeforeStep    = ( options.onBeforeStep ) ? options.onBeforeStep : null;
-            methods.onAfterStep     = ( options.onAfterStep ) ? options.onAfterStep : null;
-            methods.onFinish        = ( options.onFinish ) ? options.onFinish : null;
-            
+            // Setup event handling
+            if ( options ) {
+                methods.onBeforeStep    = ( options.onBeforeStep ) ? options.onBeforeStep : null;
+                methods.onAfterStep     = ( options.onAfterStep ) ? options.onAfterStep : null;
+                methods.onFinish        = ( options.onFinish ) ? options.onFinish : null;
+            }
+
             // Fx stack
             methods.fxStack = {};
             
