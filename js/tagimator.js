@@ -15,6 +15,8 @@
         /**
          * Initialized with the provided options, and create fx stack from selector elements
          *
+         * @private
+         *
          * @param  {Object} options Options for overiding the defaults
          * @param {Boolean} doHide Used for hiding the transisions
          *
@@ -67,6 +69,8 @@
         /**
          * Shows all elements with their repective transisions
          *
+         * @public
+         *
          * @return N/A
          */
         show: function() {
@@ -79,6 +83,8 @@
         },
         /**
          * Hide all elements with their repective transisions
+         *
+         * @public
          *
          * @return N/A
          */
@@ -94,7 +100,20 @@
             methods.parseSteps( 'hide' );
         },
         /**
-         * [parseSteps description]
+         * Removes the fx applied flag on all children
+         * this is jQuery selector
+         *
+         * @public
+         *
+         * @return N/A
+         */
+        reset: function( ) {
+            $( this.children() ).removeClass('fxApplied');
+        },
+        /**
+         * Parse each step in fx stack with transitions
+         *
+         * @private
          *
          * @param {Object} method 'show' | 'hide'
          *
@@ -147,6 +166,8 @@
         /**
          * Run transitions
          *
+         * @private
+         *
          * @param  {Object} items
          * @param  {String} method show | hide
          *
@@ -195,6 +216,8 @@
         },
         /**
          * Creates fx stack
+         *
+         * @private
          *
          * @param  {Object} items
          *
@@ -252,15 +275,6 @@
             }
             return sorted;
 
-        },
-        /**
-         * Removes the fx applied flag on all children
-         * this is jQuery selector
-         *
-         * @return N/A
-         */
-        reset: function( ) {
-            $( this.children() ).removeClass('fxApplied');
         }
     };
 
