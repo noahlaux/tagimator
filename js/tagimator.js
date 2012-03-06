@@ -53,8 +53,8 @@
                 }
                 
                 // Create fx stack which holds elements for transition
-                methods.createFxStack( items );
-            
+                methods.createFxStack( items ) ;
+
             });
 
         },
@@ -94,6 +94,31 @@
 
         },
         /**
+         * Reverse the order of the fx stack
+         *
+         * @param  {Object} items
+         * @return {Object}
+         */
+        sortStack: function( items ) {
+
+            var sorted = {},
+                key, a = [];
+
+            for ( key in items ) {
+                if ( items.hasOwnProperty(key) ) {
+                    a.push( key );
+                }
+            }
+
+            a.reverse();
+
+            for ( key = 0; key < a.length; key++ ) {
+                sorted[ a[key] ] = items[ key + 1 ];
+            }
+            return sorted;
+
+        },
+        /**
          * Shows all elements with their repective transisions
          *
          * @param {Function} callback
@@ -120,7 +145,8 @@
             // Put dom elements in transition stack
             methods.init.apply( this, [this, true] );
 
-            methods.fxStack = $( methods.fxStack ).toArray().reverse()[0];
+            // Reverse the fx stack
+            methods.fxStack = methods.sortStack( methods.fxStack );
 
             // Run transition steps
             methods.parseSteps( 'hide', callback );
