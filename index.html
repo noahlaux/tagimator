@@ -13,38 +13,56 @@
         <link rel="stylesheet" href="css/main.css">
 
     </head>
-<body>
+    <body>
 
-    <header data-fx="slide" data-fxdirection="up" data-fxstep="1" data-fxspeed="1000">
-        This is the header
-    </header>
+        <div class="transition-demo">
 
-    <div data-fx="fade" data-fxstep="2" data-fxspeed="2000" class="content" role="main">
-        This is the main content
-    </div>
+            <header data-fx-step="1" data-fx="slide" data-fx-direction="up">
+                .: Nice title :.
+            </header>
 
-    <div data-fx="fade" data-fxstep="2" data-fxspeed="1300" class="content" role="main">
-        This is the main content 2
-    </div>
+            <div data-fx-step="2" data-fx="fade" data-fx-speed="500" class="content" role="main">
+                Lorem ipsum stuffy
+            </div>
 
-    <footer data-fx="fade" data-fxstep="3">
-        <!-- Nested fx -->
-        <div data-fx="slide" data-fxstep="4" fx-direction="left" data-fxspeed ="3000" data-fxeasing="easeOutBounce" >
-            This is the footer bouncing
+            <div data-fx-step="2" data-fx="slide" class="content dark" role="main">
+                <div data-fx-step="3" data-fx="drop" data-fx-speed="300" class="inner">
+                    inner
+                </div>
+                <div data-fx-step="4" data-fx="drop" data-fx-speed="300" class="inner">
+                    inner
+                </div>
+                <div data-fx-step="5" data-fx="drop" data-fx-speed="300" class="inner">
+                    inner
+                </div>
+                <div data-fx-step="6" data-fx="drop" data-fx-speed="300" class="inner">
+                    inner
+                </div>
+            </div>
+
+            <footer data-fx-step="1" data-fx="slide" data-fx-direction="bottom" >
+                <!-- Nested fx -->
+                <div  data-fx-step="6" data-fx="slide" data-fx-direction="left" data-fx-speed ="2000" data-fx-easing="easeOutBounce" >
+                    The bouncing footer YAY!
+                </div>
+            </footer>
+
         </div>
-    </footer>
 
-    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+        <script src="js/libs/jquery-1.7.1.min.js"></script>
 
-    <script src="js/libs/ui/jquery.effects.core.js"></script>
-    <script src="js/libs/ui/jquery.effects.fade.js"></script>
-    <script src="js/libs/ui/jquery.effects.slide.js"></script>
+        <!-- jquery UI effects -->
+        <script src="js/libs/ui/jquery.effects.core.js"></script>
+        <script src="js/libs/ui/jquery.effects.fade.js"></script>
+        <script src="js/libs/ui/jquery.effects.slide.js"></script>
+        <script src="js/libs/ui/jquery.effects.drop.js"></script>
 
-    <!-- scripts concatenated and minified via build script -->
-    <script src="js/tagimator.js"></script>
-    <script src="js/script.js"></script>
+        <!-- Enhanced transitions -->
+        <script scr="js/libs/jquery.animate-enhanced.min.js"></script>
 
-</body>
+        <!-- scripts concatenated and minified via build script -->
+        <script src="js/tagimator.js"></script>
+        <script src="js/script.js"></script>
+
+    </body>
 </html>
