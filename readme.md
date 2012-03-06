@@ -118,6 +118,8 @@ $( function(){
 
 ## The stack object
 
+When you hook into either ```onBeforeStep``` or ```onAfterStep``` you're passed a ```stack```Array with objects representing the current stack. Here's the layout:
+
 ```javascript
 {
 	el:         {Object}, // HTML element
