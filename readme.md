@@ -93,7 +93,7 @@ $( function(){
 	$('body').tagimator('show', {
 		speed: 		500, // Default is 1000
 		fx: 		'slide', // default is fade
-		easing: 	'easeIn' // default is easeInOutCubic,
+		easing: 	'easeIn', // default is easeInOutCubic,
 		// Fired before a step have been finished, and pass the current step and stack as arguments
 		onBeforeStep: function( step, stack ) {
 			// Log current step
