@@ -40,6 +40,7 @@ Bla bla bla
 ```
 
 **JAVASCRIPT**
+
 ```javascript
 $( function(){
 	$('body').tagimator('show');
