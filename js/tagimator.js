@@ -65,6 +65,135 @@
 
         },
         /**
+         * Shows all elements with their repective transisions
+         *
+         * @return N/A
+         */
+        show: function() {
+            
+            // Put dom elements in transition stack
+            methods.init.apply( this, arguments );
+
+            // Run transition steps
+            methods.parseSteps( 'show' );
+        },
+        /**
+         * Hide all elements with their repective transisions
+         *
+         * @return N/A
+         */
+        hide: function() {
+            
+            // Put dom elements in transition stack
+            methods.init.apply( this, [this, true] );
+
+            // Reverse the fx stack
+            methods.fxStack = methods.reverseStack( methods.fxStack );
+
+            // Run transition steps
+            methods.parseSteps( 'hide' );
+        },
+        /**
+         * [parseSteps description]
+         *
+         * @param {Object} method 'show' | 'hide'
+         *
+         * @return N/A
+         */
+        parseSteps: function( method ) {
+                            
+            // Placeholder for fx queue
+            var fxQ = $({});
+
+            // Go through each stack in fx steps
+            $.each( methods.fxStack ,function( i, stack ) {
+                
+                // Add transitions queue with current steps transitions
+                fxQ.queue( 'transitions', function( next ) {
+
+                    // Call function for before step
+                    if ( methods.onBeforeStep ) {
+                        methods.onBeforeStep( i, stack );
+                    }
+                    
+                    $.when( methods.transitions( stack , method ) )
+                        .done( function() {
+                            // Call function for after step
+                            if ( methods.onAfterStep ) {
+                                methods.onAfterStep( i, stack );
+                            }
+                            // All element transitions on step is resolved, continue to next
+                            next();
+                        })
+                        .fail( function( e, item ) {
+                            // log error
+                            console.log(e, item);
+                        });
+     
+              });
+            });
+
+            // Add end to queue and call callback function if any
+            fxQ.queue( 'transitions', function() {
+                if ( methods.onFinish ) {
+                    methods.onFinish();
+                }
+            });
+
+            // Run transition queue
+            fxQ.dequeue('transitions');
+
+        },
+        /**
+         * Run transitions
+         *
+         * @param  {Object} items
+         * @param  {String} method show | hide
+         *
+         * @return {Function} promise
+         */
+        transitions: function( items, method ) {
+
+            var d = $.Deferred();
+        
+            $.each( items, function( i, item ) {
+                
+                // Check if effect exists
+                if ( !$.effects[ item.fx ] ) {
+                    d.reject( 'Effect "' + item.fx + '" does not exits. Did you include the jqeury.effect.' + item.fx + '.js ? ', item );
+                    return false;
+                }
+
+                // Apply transitions to objects
+                item.el[ method ](
+                    // Named effect
+                    item.fx,
+                    // Provide options
+                    item.options,
+                    // Set Speed
+                    parseInt( item.speed, 10 ),
+                    // Call next step
+                    function () {
+
+                        // Flag/unflag tag transition state
+                        if ( method === 'show' ) {
+                            item.el.addClass('fxApplied');
+                        } else {
+                            item.el.removeClass('fxApplied');
+                        }
+
+                        // if we're at final item resolve delegation
+                        if ( i ==  ( items.length - 1 ) ) {
+                            d.resolve(item);
+                        }
+                    }
+                );
+            });
+           
+            return d.promise();
+
+        },
+        /**
          * Creates fx stack
          *
          * @param  {Object} items
@@ -122,139 +251,6 @@
                 sorted[ a[key] ] = items[ key + 1 ];
             }
             return sorted;
-
-        },
-        /**
-         * Shows all elements with their repective transisions
-         *
-         * @param {Function} callback
-         *
-         * @return N/A
-         */
-        show: function() {
-            
-            // Put dom elements in transition stack
-            methods.init.apply( this, arguments );
-
-            // Run transition steps
-            methods.parseSteps( 'show' );
-        },
-        /**
-         * Hide all elements with their repective transisions
-         *
-         * @param  {Function} callback [description]
-         *
-         * @return {[type]}
-         */
-        hide: function() {
-            
-            // Put dom elements in transition stack
-            methods.init.apply( this, [this, true] );
-
-            // Reverse the fx stack
-            methods.fxStack = methods.reverseStack( methods.fxStack );
-
-            // Run transition steps
-            methods.parseSteps( 'hide' );
-        },
-        /**
-         * Run transitions
-         *
-         * @param  {Object} items
-         * @param  {String} method show | hide
-         *
-         * @return {Function} promise
-         */
-        transitions: function( items, method ) {
-
-            var d = $.Deferred();
-        
-            $.each( items, function( i, item ) {
-                
-                // Check if effect exists
-                if ( !$.effects[ item.fx ] ) {
-                    d.reject( 'Effect "' + item.fx + '" does not exits. Did you include the jqeury.effect.' + item.fx + '.js ? ', item );
-                    return false;
-                }
-
-                // Apply transitions to objects
-                item.el[ method ](
-                    // Named effect
-                    item.fx,
-                    // Provide options
-                    item.options,
-                    // Set Speed
-                    parseInt( item.speed, 10 ),
-                    // Call next step
-                    function () {
-
-                        // Flag/unflag tag transition state
-                        if ( method === 'show' ) {
-                            item.el.addClass('fxApplied');
-                        } else {
-                            item.el.removeClass('fxApplied');
-                        }
-
-                        // if we're at final item resolve delegation
-                        if ( i ==  ( items.length - 1 ) ) {
-                            d.resolve(item);
-                        }
-                    }
-                );
-            });
-           
-            return d.promise();
-
-        },
-        /**
-         * [parseSteps description]
-         *
-         * @param {Object} method 'show' | 'hide'
-         *
-         * @return N/A
-         */
-        parseSteps: function( method ) {
-                            
-            // Placeholder for fx queue
-            var fxQ = $({});
-
-            // Go through each stack in fx steps
-            $.each( methods.fxStack ,function( i, stack ) {
-                
-                // Add transitions queue with current steps transitions
-                fxQ.queue( 'transitions', function( next ) {
-
-                    // Call function for before step
-                    if ( methods.onBeforeStep ) {
-                        methods.onBeforeStep( i, stack );
-                    }
-                    
-                    $.when( methods.transitions( stack , method ) )
-                        .done( function() {
-                            // Call function for after step
-                            if ( methods.onAfterStep ) {
-                                methods.onAfterStep( i, stack );
-                            }
-                            // All element transitions on step is resolved, continue to next
-                            next();
-                        })
-                        .fail( function( e, item ) {
-                            // log error
-                            console.log(e, item);
-                        });
-     
-              });
-            });
-
-            // Add end to queue and call callback function if any
-            fxQ.queue( 'transitions', function() {
-                if ( methods.onFinish ) {
-                    methods.onFinish();
-                }
-            });
-
-            // Run transition queue
-            fxQ.dequeue('transitions');
 
         },
         /**
