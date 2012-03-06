@@ -100,8 +100,8 @@ $( function(){
 ```
 
 ## Available event hooks
-```onFinish``` Fired when all transitions have finished
-```onAfterStep( step )``` Fired when a step have been finished, and pass the current step as an argument
+* ```onFinish``` Fired when all transitions have finished
+* ```onAfterStep( step )``` Fired when a step have been finished, and pass the current step as an argument
 
 
 ## Available attributes
