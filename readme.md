@@ -15,7 +15,9 @@ tagimator is a alternative approach to step based page element transitions, driv
 * Dead simple setup, include a javascript file, execute one command and BAM!
 * Minified version comes build in with advanced features like easing
 * Uses GPU accelerated transitions where possible for great perfomance across platforms (Mobile too!)
-* Download or build your own custom transision based on [jQuery UI effects plugins](http://jqueryui.com/demos/effect/) standard
+* Download or build your own custom transision based on [jQuery UI effects plugins](http://jqueryui.com/demos/effect/) standard. The current available fx options are provided with the project for your convinience.
+
+* Uses standard 'data' attributes, so no messy warnings in your IDE
 * Oh did I mention it works splendid in all browsers you throw at it ???
 
 ## Quick start
@@ -48,7 +50,7 @@ tagimator is a alternative approach to step based page element transitions, driv
 
 **Javascript**
 
-tagimator has two main simple methods ```show``` & ```hide```, which either runs the transitions and **show** the effected HTML elements, or **hide** them which, by default (can be changed by proving options), runs the transitions in the exact opposit order of which they were shown.
+tagimator has two main methods ```show``` & ```hide```, which either runs the transitions and **show** the effected HTML elements, or **hide** them which, by default (can be changed by proving options), runs the transitions in the exact opposit order of which they were shown.
 
 To start transitions on the above HTML simply include the following in your javascript:
 
