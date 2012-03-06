@@ -91,7 +91,7 @@ $( function(){
 	$('body').tagimator('show', {
 		speed: 500, // Default is 1000
 		fx: 'slide', // default is fade
-		// Fired when a step have been finished, and pass the current step as an argument
+		// Fired before a step have been finished, and pass the current step and stack as arguments
 		onBeforeStep: function( step, stack ) {
 			// Log current step
 			console.log('step ' + step + ' done');
@@ -112,7 +112,8 @@ $( function(){
 
 ## Available event hooks
 * ```onFinish``` Fired when all transitions have finished
-* ```onAfterStep( step )``` Fired when a step have been finished, and pass the current step as an argument
+* ```onBeforeStep( step, stack )``` Fired before a step is about to render, and pass the current step and stack as arguments
+* ```onAfterStep( step, stack )``` Fired when a step have been finished, and pass the current step and stack as arguments
 
 
 ## Available attributes
