@@ -50,10 +50,12 @@ tagimator has two main simple methods ```show``` & ```hide```, which either runs
 
 **Javascript**
 
-To start transitions on the above HTML simply include the following:
+To start transitions on the above HTML simply include the following in your javascript:
 
 ```javascript
+// Wait until jqeury has loaded and DOM is ready
 $( function(){
+	// Run transitions
 	$('body').tagimator('show');
 });
 ```
