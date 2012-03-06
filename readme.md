@@ -1,6 +1,6 @@
 # tagimator
 
-tagimator is a alternative approach to step based page transitions driven by special tag attributes in your HTML markup.
+tagimator is a alternative approach to step based page element transitions, driven by special tag attributes in your HTML markup.
 
 ```html
 <!-- Simple tagimator example markup -->
@@ -74,7 +74,7 @@ For a little more advanced use, you can fx hook into the transition callback fir
 $( function(){
 	// Run transitions
 	$('body').tagimator('show', function() {
-		// This callback is fired when all transistion have finished
+		// This callback is fired when all transistions have finished
 		alert('All transitions done');
 	});
 });
@@ -91,14 +91,15 @@ $( function(){
 			fx: 'slide' // default is fade
 		},
 		function() {
-		// This callback is fired when all transistion have finished
-		alert('All transitions done');
-	});
+			// This callback is fired when all transistions have finished
+			alert('All transitions done');
+		}
+	);
 });
 ```
 
 
-## Available tags
+## Available attributes
 
 ```data-fx```, ```data-fx-step```, ```data-fx-speed```, ```data-fx-direction```, ```data-fx-easing```
 
