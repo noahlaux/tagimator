@@ -2,6 +2,13 @@
 
 tagimator is a alternative approach to step based page transitions driven by special tag attributes in your HTML markup.
 
+```html
+<!-- Simple tagimator example markup -->
+<div data-fx-step="1" data-fx="fade" data-fx-speed="500">
+	This is a box
+</div>
+```
+
 ## Features
 
 * Easy to use step based transitions
