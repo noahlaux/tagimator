@@ -27,6 +27,8 @@ see example here: [simple demo](http://jsfiddle.net/noahlaux/WveFK/)
 
 <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/noahlaux/WveFK/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+http://jsfiddle.net/noahlaux/WveFK/
+
 ```html
 <!doctype html>
 <body>
