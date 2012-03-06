@@ -67,15 +67,36 @@ see working example here: [simple demo on fiddlejs](http://jsfiddle.net/noahlaux
 
 ## Advanced uses
 
-For a little more advanced use, you can hook into the transition callback fired when all transitions have finished:
+For a little more advanced use, you can fx hook into the transition callback fired when all transitions have finished:
 
 ```javascript
+// Wait until jqeury has loaded and DOM is ready
 $( function(){
+	// Run transitions
 	$('body').tagimator('show', function() {
+		// This callback is fired when all transistion have finished
 		alert('All transitions done');
 	});
 });
 ```
+
+For a more custum setup you can provide options:
+
+```javascript
+// Wait until jqeury has loaded and DOM is ready
+$( function(){
+	// Run transitions
+	$('body').tagimator('show', {
+			speed: 500, // Default is 1000
+			fx: 'slide' // default is fade
+		},
+		function() {
+		// This callback is fired when all transistion have finished
+		alert('All transitions done');
+	});
+});
+```
+
 
 ## Available tags
 
