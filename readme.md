@@ -49,7 +49,7 @@ tagimator has two main simple methods ```show``` & ```hide```, which either runs
 
 **Javascript**
 
-To start transitions on the above HTML simply include the following
+To start transitions on the above HTML simply include the following:
 
 ```javascript
 $( function(){
@@ -68,6 +68,10 @@ $( function(){
 	});
 });
 ```
+
+## Available tags
+
+```data-fx```, ```data-fx-step```, ```data-fx-speed```, ```data-fx-direction```, ```data-fx-easing```
 
 
 * Source: http://github.com/noahlaux/tagimator
