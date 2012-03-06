@@ -16,16 +16,13 @@ tagimator is a alternative approach to step based page transitions driven by spe
 * Minified version comes build in with advanced features like easing
 * Uses GPU accelerated transitions where possible for great perfomance across platforms (Mobile too!)
 * Download or build your own custom transision based on [jQuery UI effects plugins](http://jqueryui.com/demos/effect/) standard
+* Oh did I mention it works splendid in all browsers you throw at it ???
 
 ## Quick start
 
 tagimator has two main simple methods ```show``` & ```hide```, which either runs the transitions and **show** the effected HTML elements, or **hide** them which, by default (can be changed by proving options), runs the transitions in the exact opposit order of which they were shown.
 
 **HTML**
-
-see example here: [simple demo](http://jsfiddle.net/noahlaux/WveFK/)
-
-<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/noahlaux/WveFK/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ```html
 <!doctype html>
@@ -60,6 +57,11 @@ $( function(){
 	$('body').tagimator('show');
 });
 ```
+
+
+see working example here: [simple demo on fiddlejs](http://jsfiddle.net/noahlaux/WveFK/)
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/noahlaux/WveFK/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ## Advanced uses
 
