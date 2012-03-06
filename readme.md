@@ -83,7 +83,7 @@ $( function(){
 		onFinish: function() {
 			alert('All transitions done');
 		}
-	);
+	});
 });
 ```
 
