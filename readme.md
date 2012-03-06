@@ -18,7 +18,7 @@ tagimator is a alternative approach to step based page transitions driven by spe
 
 ## Quick start
 
-tagimator has two main simple methods ```show``` & ```hide```, which either runs the transitions and 'show's the effected HTML elements, or 'hide' them which, by default (can be changed by proving options), in the exact opposit order of which they were shown.
+tagimator has two main simple methods ```show``` & ```hide```, which either runs the transitions and 'show' the effected HTML elements, or 'hide' them which, by default (can be changed by proving options), runs the transitions in the exact opposit order of which they were shown.
 
 **HTML**
 
@@ -46,7 +46,7 @@ tagimator has two main simple methods ```show``` & ```hide```, which either runs
 </html>
 ```
 
-**JAVASCRIPT**
+**Javascript**
 
 ```javascript
 $( function(){
@@ -54,9 +54,9 @@ $( function(){
 });
 ```
 
-**JAVASCRIPT**
+**Advanced uses**
 
-For a little more advanced use:
+For a little more advanced use, you can hook into the transition callback fired when all transitions have finished:
 
 ```javascript
 $( function(){
