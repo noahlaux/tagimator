@@ -1,6 +1,6 @@
 $( function(){
 
-	$('body').tagimator('show', {speed: 100}, function() {
+	$('body').tagimator('show', function() {
 		console.log('fx done');
 	});
 
