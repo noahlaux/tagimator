@@ -79,6 +79,7 @@
                         methods.fxStack[ el.attr('data-fx-step') ] = [];
                     }
 
+                    // Push transitions details into step
                     methods.fxStack[ el.attr('data-fx-step') ].push({
                         el:         el,
                         fx:         el.attr('data-fx'),
@@ -104,6 +105,7 @@
             // Put dom elements in transition stack
             methods.init.apply( this, arguments );
 
+            // Run transition steps
             methods.parseSteps( 'show', callback );
         },
         /**
@@ -115,10 +117,12 @@
          */
         hide: function( callback ) {
             
+            // Put dom elements in transition stack
             methods.init.apply( this, [this, true] );
 
             methods.fxStack = $( methods.fxStack ).toArray().reverse()[0];
 
+            // Run transition steps
             methods.parseSteps( 'hide', callback );
         },
         /**
@@ -134,7 +138,8 @@
             var d = $.Deferred();
         
             $.each( items, function( i, item ) {
-                 // Check if effect exists
+                
+                // Check if effect exists
                 if ( !$.effects[ item.fx ] ) {
                     d.reject( 'Effect "' + item.fx + '" does not exits. Did you include the jqeury.effect.' + item.fx + '.js ? ', item );
                     return false;
