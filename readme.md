@@ -62,8 +62,11 @@ $( function(){
 });
 ```
 
+**see working examples here:** 
 
-see working example here: [simple demo on fiddlejs](http://jsfiddle.net/noahlaux/WveFK/)
+* [simple demo on fiddlejs](http://jsfiddle.net/noahlaux/WveFK/)
+* [advanced demo on fiddlejs](http://jsfiddle.net/noahlaux/KnwLa/)
+
 
 <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/noahlaux/WveFK/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -89,27 +92,29 @@ For a more custum setup you can provide options, which are all optional and have
 ```javascript
 // Wait until jqeury has loaded and DOM is ready
 $( function(){
+	
 	// Run transitions
-	$('body').tagimator('show', {
-		speed: 		500, // Default is 1000
-		fx: 		'slide', // default is fade
-		easing: 	'easeIn', // default is easeInOutCubic,
-		// Fired before a step have been finished, and pass the current step and stack as arguments
-		onBeforeStep: function( step, stack ) {
-			// Log current step
-			console.log('step ' + step + ' done');
+    $('.transition-demo').tagimator('show', {
+        speed:         500, // Default is 1000
+        fx:         'slide', // default is fade
+        easing:     'easeInCubic', // default is easeInOutCubic,
+        // Fired before a step have been finished, and pass the current step and stack as arguments
+        onBeforeStep: function( step, stack ) {
+            // Log current step
+            console.log('step ' + step + ' done');
 
-			// Evaulate if we are on step 1 (remember steps are strings!)
-			if ( step === "1" ) {
-				// Since a fx stack step holds an array of items, make sure we only want the first here, which is the title
-				$(stack[0].el).html('.: New inserted title :.');
-			}
-		},
-		// Fired when all transistions have finished
-		onFinish: function() {
-			alert('All transitions done');
-		}
-	);
+            // Evaulate if we are on step 1 (remember steps are strings!)
+            if ( step === "1" ) {
+                // Since a fx stack step holds an array of items, make sure we only want the first here, which is the title
+                $(stack[0].el).html('.: New inserted title :.');
+            }
+        },
+        // Fired when all transistions have finished
+        onFinish: function() {
+            alert('All transitions done');
+        }
+    });
+    ​
 });
 ```
 

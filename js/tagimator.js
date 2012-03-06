@@ -13,9 +13,10 @@
 
     var methods = {
         /**
-         * [init description]
+         * Initialized with the provided options, and create fx stack from selector elements
          *
-         * @param  {Object} options [description]
+         * @param  {Object} options Options for overiding the defaults
+         * @param {Boolean} doHide Used for hiding the transisions
          *
          * @return {Array}
          */
@@ -29,7 +30,7 @@
                 'method':       'show'
             }, options);
             
-            // Setup event handling
+            // Setup event handling hooks
             if ( options ) {
                 methods.onBeforeStep    = ( options.onBeforeStep ) ? options.onBeforeStep : null;
                 methods.onAfterStep     = ( options.onAfterStep ) ? options.onAfterStep : null;
@@ -209,11 +210,10 @@
          * [parseSteps description]
          *
          * @param {Object} method 'show' | 'hide'
-         * @param {Function} callback
          *
          * @return N/A
          */
-        parseSteps: function( method, callback ) {
+        parseSteps: function( method ) {
                             
             // Placeholder for fx queue
             var fxQ = $({});
