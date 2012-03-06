@@ -18,7 +18,7 @@ tagimator is a alternative approach to step based page transitions driven by spe
 
 ## Quick start
 
-tagimator has two main simple methods 'show' & 'hide', which either running the transitions and 'showing' the effected HTML elements, or 'hiding' them which is default in the exact opposit order of showing
+tagimator has two main simple methods ```show``` & ```hide```, which either runs the transitions and 'showing' the effected HTML elements, or 'hiding' them which is default in the exact opposit order of which they were shown.
 
 **HTML**
 
