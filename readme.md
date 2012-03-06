@@ -91,7 +91,18 @@ $( function(){
 	$('body').tagimator('show', {
 		speed: 500, // Default is 1000
 		fx: 'slide', // default is fade
-		// This callback is fired when all transistions have finished
+		// Fired when a step have been finished, and pass the current step as an argument
+		onBeforeStep: function( step, stack ) {
+			// Log current step
+			console.log('step ' + step + ' done');
+
+			// Evaulate if we are on step 1 (remember steps are strings!)
+			if ( step === "1" ) {
+				// Since a fx stack step can hold many items, we only want the first here which is the title
+				$(stack[0].el).html('.: New inserted title :.');
+			}
+		},
+		// Fired when all transistions have finished
 		onFinish: function() {
 			alert('All transitions done');
 		}

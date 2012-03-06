@@ -30,6 +30,8 @@
                 'method':       'show'
             }, options);
             
+            // Setup eventhandling
+            methods.onBeforeStep    = ( options.onBeforeStep ) ? options.onBeforeStep : null;
             methods.onAfterStep     = ( options.onAfterStep ) ? options.onAfterStep : null;
             methods.onFinish        = ( options.onFinish ) ? options.onFinish : null;
             
@@ -220,12 +222,17 @@
                 
                 // Add transitions queue with current steps transitions
                 fxQ.queue( 'transitions', function( next ) {
+
+                    // Call function for before step
+                    if ( methods.onBeforeStep ) {
+                        methods.onBeforeStep( i, stack );
+                    }
                     
                     $.when( methods.transitions( stack , method ) )
                         .done( function() {
-                                        // Call function for Before transition
+                            // Call function for after step
                             if ( methods.onAfterStep ) {
-                                methods.onAfterStep( i );
+                                methods.onAfterStep( i, stack );
                             }
                             // All element transitions on step is resolved, continue to next
                             next();
