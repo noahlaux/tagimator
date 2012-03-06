@@ -61,7 +61,7 @@ $( function(){
 ```
 
 
-see working example here: [simple demo on fiddlejs](http://jsfiddle.net/noahlaux/WveFK/2/)
+see working example here: [simple demo on fiddlejs](http://jsfiddle.net/noahlaux/WveFK/)
 
 <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/noahlaux/WveFK/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
