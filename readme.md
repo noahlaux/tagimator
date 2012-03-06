@@ -73,10 +73,12 @@ For a little more advanced use, you can fx hook into the transition callback fir
 // Wait until jqeury has loaded and DOM is ready
 $( function(){
 	// Run transitions
-	$('body').tagimator('show', function() {
+	$('body').tagimator('show', {
 		// This callback is fired when all transistions have finished
-		alert('All transitions done');
-	});
+		onFinish: function() {
+			alert('All transitions done');
+		}
+	);
 });
 ```
 
@@ -87,11 +89,10 @@ For a more custum setup you can provide options:
 $( function(){
 	// Run transitions
 	$('body').tagimator('show', {
-			speed: 500, // Default is 1000
-			fx: 'slide' // default is fade
-		},
-		function() {
-			// This callback is fired when all transistions have finished
+		speed: 500, // Default is 1000
+		fx: 'slide', // default is fade
+		// This callback is fired when all transistions have finished
+		onFinish: function() {
 			alert('All transitions done');
 		}
 	);

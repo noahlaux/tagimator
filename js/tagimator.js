@@ -27,9 +27,11 @@
                 'fx':           'fade',
                 'easing':       'easeInOutCubic',
                 'currentStep':  1,
-                'method':       'show',
-                'onTransitionBeforeStep' : methods.onTransitionBeforeStep
+                'method':       'show'
             }, options);
+            
+            methods.onAfterStep     = ( options.onAfterStep ) ? options.onAfterStep : null;
+            methods.onFinish        = ( options.onFinish ) ? options.onFinish : null;
             
             // Fx stack
             methods.fxStack = {};
@@ -99,7 +101,7 @@
          * @param  {Object} items
          * @return {Object}
          */
-        sortStack: function( items ) {
+        reverseStack: function( items ) {
 
             var sorted = {},
                 key, a = [];
@@ -125,13 +127,13 @@
          *
          * @return N/A
          */
-        show: function( callback ) {
-
+        show: function() {
+            
             // Put dom elements in transition stack
             methods.init.apply( this, arguments );
 
             // Run transition steps
-            methods.parseSteps( 'show', callback );
+            methods.parseSteps( 'show' );
         },
         /**
          * Hide all elements with their repective transisions
@@ -140,16 +142,16 @@
          *
          * @return {[type]}
          */
-        hide: function( callback ) {
+        hide: function() {
             
             // Put dom elements in transition stack
             methods.init.apply( this, [this, true] );
 
             // Reverse the fx stack
-            methods.fxStack = methods.sortStack( methods.fxStack );
+            methods.fxStack = methods.reverseStack( methods.fxStack );
 
             // Run transition steps
-            methods.parseSteps( 'hide', callback );
+            methods.parseSteps( 'hide' );
         },
         /**
          * Run transitions
@@ -210,11 +212,6 @@
          */
         parseSteps: function( method, callback ) {
                             
-            // Call function for Before transition
-            if ( this.onTransitionBeforeStep ) {
-                this.onTransitionBeforeStep( step );
-            }
-
             // Placeholder for fx queue
             var fxQ = $({});
 
@@ -226,6 +223,10 @@
                     
                     $.when( methods.transitions( stack , method ) )
                         .done( function() {
+                                        // Call function for Before transition
+                            if ( methods.onAfterStep ) {
+                                methods.onAfterStep( i );
+                            }
                             // All element transitions on step is resolved, continue to next
                             next();
                         })
@@ -239,8 +240,8 @@
 
             // Add end to queue and call callback function if any
             fxQ.queue( 'transitions', function() {
-                if ( callback ) {
-                    callback();
+                if ( methods.onFinish ) {
+                    methods.onFinish();
                 }
             });
 
