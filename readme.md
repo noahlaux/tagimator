@@ -120,12 +120,12 @@ $( function(){
 
 ```javascript
 {
-el:         {Object}, // HTML element
-fx:         {String}, // String with transition name (default: 'fade')
-speed:      {Number}, // fx speed (default: 1000)
-options:    {
-    direction:  {String}, // Direction of slide (default: 'left')
-    easing:     {String} // Easing to use (default: 'easeInOutCubic')
+	el:         {Object}, // HTML element
+	fx:         {String}, // String with transition name (default: 'fade')
+	speed:      {Number}, // fx speed (default: 1000)
+	options:    {
+	    direction:  {String}, // Direction of slide (default: 'left')
+	    easing:     {String} // Easing to use (default: 'easeInOutCubic')
 }
 ```
 
