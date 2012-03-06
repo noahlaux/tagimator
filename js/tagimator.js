@@ -44,45 +44,57 @@
                     items = $( self ).find('.fxApplied');
                 } else {
                     // Check if our root objects have the data-fx property, else select all children
-                    items = ( $( self.selector + '[data-fx]').length === 0 ) ? $( self ).find('[data-fx]') : $( self.selector + '[data-fx]');
+                    items = ( $( self.selector + '[data-fx]').length === 0 ) ? $( self ).find('[data-fx]').not('.fxApplied') : $( self.selector + '[data-fx]').not('.fxApplied');
+                }
+
+                 if ( !doHide ) {
+                    // Hide all fx elements, so we can show them later with crazy fx
+                    $( items ).not('.fxApplied').hide();
                 }
                 
-                // Find all fx elements
-                items
-                    // Put all steps into local object for later parsing
-                    .each( function( i, item ) {
-
-                        var el = $( item );
-
-                        // Create new fx step in stack
-                        if ( !methods.fxStack[ el.attr('data-fxstep') ]) {
-                            methods.fxStack[ el.attr('data-fxstep') ] = [];
-                        }
-
-                        methods.fxStack[ el.attr('data-fxstep') ].push({
-                            el:         el,
-                            fx:         el.attr('data-fx'),
-                            speed:      el.attr('data-fxspeed') ? el.attr('data-fxspeed') : methods.settings.speed,
-                            options:    {
-                                direction:  el.attr('data-fxdirection'),
-                                easing:     el.attr('data-fxeasing') ? el.attr('data-fxeasing') : methods.settings.easing
-                            }
-                        });
-
-                    });
-
-                    if ( !doHide ) {
-                        // Hide all fx elements, so we can show them later with crazy fx
-                        $( items ).hide();
-                    }
+                // Create fx stack which holds elements for transition
+                methods.createFxStack( items );
             
             });
 
         },
         /**
+         * Creates fx stack
+         *
+         * @param  {Object} items
+         *
+         * @return N/A
+         */
+        createFxStack: function( items ) {
+
+            // Find all fx elements
+            items
+                // Put all steps into local object for later parsing
+                .each( function( i, item ) {
+
+                    var el = $( item );
+
+                    // Create new fx step in stack
+                    if ( !methods.fxStack[ el.attr('data-fx-step') ]) {
+                        methods.fxStack[ el.attr('data-fx-step') ] = [];
+                    }
+
+                    methods.fxStack[ el.attr('data-fx-step') ].push({
+                        el:         el,
+                        fx:         el.attr('data-fx'),
+                        speed:      el.attr('data-fx-speed') ? el.attr('data-fx-speed') : methods.settings.speed,
+                        options:    {
+                            direction:  el.attr('data-fx-direction'),
+                            easing:     el.attr('data-fx-easing') ? el.attr('data-fx-easing') : methods.settings.easing
+                        }
+                    });
+
+                });
+
+        },
+        /**
          * Shows all elements with their repective transisions
          *
-         * @param {Integer} item
          * @param {Function} callback
          *
          * @return N/A
@@ -95,9 +107,8 @@
             methods.parseSteps( 'show', callback );
         },
         /**
-         * Local method to show transitions
+         * Hide all elements with their repective transisions
          *
-         * @param  {[type]}   item     [description]
          * @param  {Function} callback [description]
          *
          * @return {[type]}
@@ -111,14 +122,12 @@
             methods.parseSteps( 'hide', callback );
         },
         /**
-         * Local method to show transitions
+         * Run transitions
          *
-         * @private
+         * @param  {Object} items
+         * @param  {String} method show | hide
          *
-         * @param  {[type]}   item     [description]
-         * @param  {Function} callback [description]
-         *
-         * @return {[type]}
+         * @return {Function} promise
          */
         transitions: function( items, method ) {
 
@@ -127,7 +136,8 @@
             $.each( items, function( i, item ) {
                  // Check if effect exists
                 if ( !$.effects[ item.fx ] ) {
-                    d.reject('effect "' + fx + '" is not declared on element ', item );
+                    d.reject( 'Effect "' + item.fx + '" does not exits. Did you include the jqeury.effect.' + item.fx + '.js ? ', item );
+                    return false;
                 }
 
                 // Apply transitions to objects
@@ -140,7 +150,15 @@
                     parseInt( item.speed, 10 ),
                     // Call next step
                     function () {
-                        item.el.addClass('fxApplied');
+
+                        // Flag/unflag tag transition state
+                        if ( method === 'show' ) {
+                            item.el.addClass('fxApplied');
+                        } else {
+                            item.el.removeClass('fxApplied');
+                        }
+
+                        // if we're at final item resolve delegation
                         if ( i ==  ( items.length - 1 ) ) {
                             d.resolve(item);
                         }
@@ -154,7 +172,8 @@
         /**
          * [parseSteps description]
          *
-         * @param  {Object} method 'show' | 'hide'
+         * @param {Object} method 'show' | 'hide'
+         * @param {Function} callback
          *
          * @return N/A
          */
@@ -174,10 +193,15 @@
                 // Add transitions queue with current steps transitions
                 fxQ.queue( 'transitions', function( next ) {
                     
-                   $.when( methods.transitions( stack , method ) ).done( function() {
-                        // All element transitions on step is resolved, continue to next
-                        next();
-                   });
+                    $.when( methods.transitions( stack , method ) )
+                        .done( function() {
+                            // All element transitions on step is resolved, continue to next
+                            next();
+                        })
+                        .fail( function( e, item ) {
+                            // log error
+                            console.log(e, item);
+                        });
      
               });
             });
