@@ -26,7 +26,6 @@
                 'speed':        1000,
                 'fx':           'fade',
                 'easing':       'easeInOutCubic',
-                'currentStep':  1,
                 'method':       'show'
             }, options);
             

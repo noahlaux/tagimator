@@ -21,8 +21,8 @@ header {
 }
 
 .content {
-    height: 100px;
-    line-height: 100px;
+	height: 100px;
+	line-height: 100px;
 	background-color: orange;
 	color: #fff;
 	text-align: center;

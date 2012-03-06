@@ -3,18 +3,19 @@
 
 
 /* TEAM */
-  <your title>: Noah Laux
-  Site: 
+  Noah Laux
+  Site: github.com/noahlaux
   Twitter: noahlaux
+  Skype: noahlaux
+  email: noahlaux@gmail.com
   Location: Denmark
 
 /* THANKS */
-  Names (& URL):
+  Jquery team
 
 /* SITE */
   Standards: HTML5, CSS3
   Components: Modernizr, jQuery
-  Software:
 
 
 

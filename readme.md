@@ -5,7 +5,7 @@ tagimator is a alternative approach to step based page element transitions, driv
 ```html
 <!-- Simple tagimator example markup -->
 <div data-fx-step="1" data-fx="fade" data-fx-speed="500">
-	This is a box
+	This is a box...YAY!
 </div>
 ```
 
@@ -67,7 +67,7 @@ see working example here: [simple demo on fiddlejs](http://jsfiddle.net/noahlaux
 
 ## Advanced uses
 
-For a little more advanced use, you can fx hook into the transition callback fired when all transitions have finished:
+For a little more advanced use, you can fx hook into the callback fired when all transitions have finished:
 
 ```javascript
 // Wait until jqeury has loaded and DOM is ready
@@ -82,15 +82,16 @@ $( function(){
 });
 ```
 
-For a more custum setup you can provide options:
+For a more custum setup you can provide options, which are all optional and have default fallbacks:
 
 ```javascript
 // Wait until jqeury has loaded and DOM is ready
 $( function(){
 	// Run transitions
 	$('body').tagimator('show', {
-		speed: 500, // Default is 1000
-		fx: 'slide', // default is fade
+		speed: 		500, // Default is 1000
+		fx: 		'slide', // default is fade
+		easing: 	'easeIn' // default is easeInOutCubic,
 		// Fired before a step have been finished, and pass the current step and stack as arguments
 		onBeforeStep: function( step, stack ) {
 			// Log current step
@@ -98,7 +99,7 @@ $( function(){
 
 			// Evaulate if we are on step 1 (remember steps are strings!)
 			if ( step === "1" ) {
-				// Since a fx stack step can hold many items, we only want the first here which is the title
+				// Since a fx stack step holds an array of items, make sure we only want the first here, which is the title
 				$(stack[0].el).html('.: New inserted title :.');
 			}
 		},
