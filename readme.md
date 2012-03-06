@@ -11,14 +11,14 @@ tagimator is a alternative approach to step based page transitions driven by spe
 
 ## Features
 
-* Easy to use step based transitions
+* Easy to use step based transitions (only basic HTML knowledge need)
 * Minified version comes build in with advanced features like easing
 * Uses GPU accelerated transitions where possible for great perfomance across platforms (Mobile too!)
-* Download or build your own custom transision [based on jQuery UI effects plugins standard](http://jqueryui.com/demos/effect/)
+* Download or build your own custom transision based on [jQuery UI effects plugins](http://jqueryui.com/demos/effect/) standard
 
 ## Quick start
 
-Bla bla bla
+tagimator has two main simple methods 'show' & 'hide', which either running the transitions and 'showing' the effected HTML elements, or 'hiding' them which is default in the exact opposit order of showing
 
 **HTML**
 
