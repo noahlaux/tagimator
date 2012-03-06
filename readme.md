@@ -49,13 +49,15 @@ tagimator has two main simple methods ```show``` & ```hide```, which either runs
 
 **Javascript**
 
+To start transitions on the above HTML simply include the following
+
 ```javascript
 $( function(){
 	$('body').tagimator('show');
 });
 ```
 
-**Advanced uses**
+## Advanced uses
 
 For a little more advanced use, you can hook into the transition callback fired when all transitions have finished:
 
