@@ -120,7 +120,7 @@
          * @return N/A
          */
         parseSteps: function( method ) {
-                            
+
             // Placeholder for fx queue
             var fxQ = $({});
 
@@ -146,7 +146,7 @@
                         })
                         .fail( function( e, item ) {
                             // log error
-                            console.log(e, item);
+                            console.log( e, item );
                         });
      
               });
@@ -193,7 +193,7 @@
                     item.options,
                     // Set Speed
                     parseInt( item.speed, 10 ),
-                    // Call next step
+                    // Transition done
                     function () {
 
                         // Flag/unflag tag transition state
@@ -205,7 +205,7 @@
 
                         // if we're at final item resolve delegation
                         if ( i ==  ( items.length - 1 ) ) {
-                            d.resolve(item);
+                            d.resolve( item );
                         }
                     }
                 );
@@ -271,7 +271,7 @@
             a.reverse();
 
             for ( key = 0; key < a.length; key++ ) {
-                sorted[ a[key] ] = items[ key + 1 ];
+                sorted[key + 1 ] = items[  a[key] ];
             }
             return sorted;
 
@@ -280,8 +280,8 @@
 
     $.fn.tagimator = function( method ) {
     
-        if ( methods[method] ) {
-            return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        if ( methods[ method ] ) {
+            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
         } else if ( typeof method === 'object' || ! method ) {
             return methods.init.apply( this, arguments );
         } else {
