@@ -270,8 +270,10 @@
 
             a.reverse();
 
-            for ( key = 0; key < a.length; key++ ) {
-                sorted[key + 1 ] = items[  a[key] ];
+            var itemsLength = a.length;
+
+            for ( key = 0; key < itemsLength; key++ ) {
+                sorted[ key + 1 ] = items[ a[key] ];
             }
             return sorted;
 
