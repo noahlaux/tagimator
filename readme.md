@@ -64,7 +64,7 @@ $( function(){
 
 **see working examples here:** 
 
-* [simple demo on fiddlejs](http://jsfiddle.net/noahlaux/WveFK/)
+* [simple demo on fiddlejs](http://jsfiddle.net/noahlaux/sdEJh/)
 * [advanced demo on fiddlejs](http://jsfiddle.net/noahlaux/KnwLa/)
 
 
