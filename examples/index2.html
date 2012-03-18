@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>tagimator</title>
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/example2.css">
+
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div data-fx-step="1" data-fx="fade" data-fx-out-goto=".slider" data-fx-speed="2000" class="fader">
+                <div>
+                    I fade in and out and after each call sliding box to the right
+                </div>
+            </div>
+
+             <div data-fx-step="2" data-fx="drop" data-fx-direction="right" data-fx-out-goto=".fader" class="slider fx-hidden">
+                <div>
+                    I slide in and out, and after each call fader box to the right
+                </div>
+            </div>
+
+            <div data-fx-step="1" data-fx="fade" data-fx-out-goto="self" class="loop fx-hidden">
+                <div>
+                    I fade and loop myself...like forever :)
+                </div>
+            </div>
+
+            <footer data-fx-step="2" data-fx="fade">
+                <div>
+                    I'm fading up on 4th step but NOT looping!
+                </div>
+            </footer>
+ 
+        <div>
+
+        <!-- Jquery library -->
+        <script src="../js/libs/jquery-1.7.1.min.js"></script>
+
+        <!-- jquery UI effects -->
+        <script src="../js/libs/ui/jquery.effects.core.js"></script>
+        <script src="../js/libs/ui/jquery.effects.fade.js"></script>
+        <script src="../js/libs/ui/jquery.effects.slide.js"></script>
+        <script src="../js/libs/ui/jquery.effects.drop.js"></script>
+
+        <!-- Enhanced transitions -->
+        <script scr="../js/libs/jquery.animate-enhanced.min.js"></script>
+
+        <!-- tagimator plugin -->
+        <script src="../js/tagimator.js"></script>
+
+        <!-- page specific script -->
+        <script src="../js/forExamples/script2.js"></script>
+
+    </body>
+</html>

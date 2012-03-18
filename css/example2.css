@@ -1,0 +1,52 @@
+.container {
+	height: 500px;
+	width: 500px;
+	background-color: #000;
+	position: relative;
+	overflow: hidden;
+}
+
+.fader {
+	height: 200px;
+	width: 200px;
+	background-color: LightCoral;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+	.fader div {
+		margin: 10px;
+	}
+
+.slider {
+	height: 100px;
+	width:  200px;
+	background-color: orange;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+}
+
+	.slider div {
+		margin: 10px;
+		position: absolute;
+	}
+
+.loop {
+	position: absolute;
+	top: 261px;
+	left: 0;
+	right: 0;
+	background-color: DarkCyan;
+}
+
+	.loop div {
+		padding: 10px;
+	}
+
+
+.fx-hidden {
+	display: none;
+}

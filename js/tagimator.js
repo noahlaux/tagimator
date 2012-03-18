@@ -1,7 +1,7 @@
 /**
  * jQuery tagimator
  *
- * @version 1.0
+ * @version 1.1
  *
  * @author Noah Laux (noahlaux@gmail.com)
  *
@@ -9,7 +9,7 @@
  *  jquery
  *  jquery.effects.core.js
  */
-(function( $, undefined ) {
+( function( $, undefined ) {
 
     var methods = {
         /**
@@ -17,19 +17,19 @@
          *
          * @private
          *
-         * @param  {Object} options Options for overiding the defaults
+         * @param {Object} options Options for overiding the defaults
          * @param {Boolean} doHide Used for hiding the transisions
          *
          * @return {Array}
          */
-        init: function( options, doHide ) {
+        init: function( options ) {
 
             // Create some defaults, extending them with any options that were provided
             methods.settings = $.extend( {
-                'speed':        1000,
-                'fx':           'fade',
-                'easing':       'easeInOutCubic',
-                'method':       'show'
+                'speed':    1000,
+                'fx':       'fade',
+                'easing':   'easeInOutCubic',
+                'method':   'show'
             }, options);
             
             // Setup event handling hooks
@@ -39,31 +39,8 @@
                 methods.onFinish        = ( options.onFinish ) ? options.onFinish : null;
             }
 
-            // Fx stack
-            methods.fxStack = {};
-            
-            var self    = this,
-                items   = {};
-
-            // Return each element for changing
-            return this.each( function(){
-
-                if ( doHide ) {
-                    items = $( self ).find('.fxApplied');
-                } else {
-                    // Check if our root objects have the data-fx property, else select all children
-                    items = ( $( self.selector + '[data-fx]').length === 0 ) ? $( self ).find('[data-fx]').not('.fxApplied') : $( self.selector + '[data-fx]').not('.fxApplied');
-                }
-
-                 if ( !doHide ) {
-                    // Hide all fx elements, so we can show them later with crazy fx
-                    $( items ).not('.fxApplied').hide();
-                }
-                
-                // Create fx stack which holds elements for transition
-                methods.createFxStack( items ) ;
-
-            });
+            // Return for changing
+            return this;
 
         },
         /**
@@ -75,11 +52,17 @@
          */
         show: function() {
             
-            // Put dom elements in transition stack
-            methods.init.apply( this, arguments );
+            // Check if our root objects have the data-fx property, else select all children
+            var includeSelfElement  = $( this ).filter('[data-fx]'),
+                items               = ( includeSelfElement.length === 0 ) ? $( this ).find('[data-fx]').not('.fxApplied') : includeSelfElement.not('.fxApplied'),
+                // Create fx stack which holds elements for transition
+                fxStack             = methods.createFxStack( items );
+
+            // Hide all fx elements, so we can show them later with crazy fx
+            $( items ).not('.fxApplied').hide();
 
             // Run transition steps
-            methods.parseSteps( 'show' );
+            methods.parseSteps( 'show', fxStack );
         },
         /**
          * Hide all elements with their repective transisions
@@ -89,15 +72,15 @@
          * @return N/A
          */
         hide: function() {
-            
-            // Put dom elements in transition stack
-            methods.init.apply( this, [this, true] );
 
-            // Reverse the fx stack
-            methods.fxStack = methods.reverseStack( methods.fxStack );
+            // Select all elements which has already been rendered before including the selector
+            var includeSelfElement  = $( this ).filter('.fxApplied[data-fx]'),
+                items               = ( includeSelfElement.length === 0 ) ? $( this ).find('.fxApplied') : includeSelfElement,
+                // Reverse the fx stack to show them backwards
+                fxStack             = methods.reverseStack( methods.createFxStack( items ) );
 
             // Run transition steps
-            methods.parseSteps( 'hide' );
+            methods.parseSteps( 'hide', fxStack );
         },
         /**
          * Removes the fx applied flag on all children
@@ -119,13 +102,13 @@
          *
          * @return N/A
          */
-        parseSteps: function( method ) {
+        parseSteps: function( method, fxStack ) {
 
             // Placeholder for fx queue
             var fxQ = $({});
 
             // Go through each stack in fx steps
-            $.each( methods.fxStack ,function( i, stack ) {
+            $.each( fxStack ,function( i, stack ) {
                 
                 // Add transitions queue with current steps transitions
                 fxQ.queue( 'transitions', function( next ) {
@@ -136,14 +119,18 @@
                     }
                     
                     $.when( methods.transitions( stack , method ) )
+                        // Transition done
                         .done( function() {
+                            
                             // Call function for after step
                             if ( methods.onAfterStep ) {
                                 methods.onAfterStep( i, stack );
                             }
+
                             // All element transitions on step is resolved, continue to next
                             next();
                         })
+                        // Transition fail
                         .fail( function( e, item ) {
                             // log error
                             console.log( e, item );
@@ -203,6 +190,26 @@
                             item.el.removeClass('fxApplied');
                         }
 
+                        // If item ask to run another transition
+                        if ( item.outGoto ) {
+
+                            // TODO describe/comment this flow better
+                            var elements = ( item.outGoto === 'self' ) ? item.el : $( item.outGoto );
+                            
+                            $.each( elements, function( i, element ) {
+
+                                var $element = $( element );
+
+                                if ( $element.is(':hidden') ) {
+                                    $( $element ).tagimator('show');
+                                } else {
+                                    $( $element ).tagimator('hide');
+                                }
+                              
+                            });
+
+                        }
+
                         // if we're at final item resolve delegation
                         if ( i ==  ( items.length - 1 ) ) {
                             d.resolve( item );
@@ -221,9 +228,11 @@
          *
          * @param  {Object} items
          *
-         * @return N/A
+         * @return {Object} fxStack
          */
         createFxStack: function( items ) {
+
+            var fxStack = {};
 
             // Find all fx elements
             items
@@ -233,15 +242,16 @@
                     var el = $( item );
 
                     // Create new fx step in stack
-                    if ( !methods.fxStack[ el.attr('data-fx-step') ]) {
-                        methods.fxStack[ el.attr('data-fx-step') ] = [];
+                    if ( !fxStack[ el.attr('data-fx-step') ]) {
+                        fxStack[ el.attr('data-fx-step') ] = [];
                     }
 
                     // Push transitions details into step
-                    methods.fxStack[ el.attr('data-fx-step') ].push({
+                    fxStack[ el.attr('data-fx-step') ].push({
                         el:         el,
                         fx:         el.attr('data-fx'),
                         speed:      el.attr('data-fx-speed') ? el.attr('data-fx-speed') : methods.settings.speed,
+                        outGoto:    el.attr('data-fx-out-goto') ? el.attr('data-fx-out-goto') : null,
                         options:    {
                             direction:  el.attr('data-fx-direction'),
                             easing:     el.attr('data-fx-easing') ? el.attr('data-fx-easing') : methods.settings.easing
@@ -250,12 +260,15 @@
 
                 });
 
+            return fxStack;
+
         },
         /**
          * Reverse the order of the fx stack
          *
          * @param  {Object} items
-         * @return {Object}
+         *
+         * @return {Object} items in reversed order
          */
         reverseStack: function( items ) {
 
@@ -275,20 +288,30 @@
             for ( key = 0; key < itemsLength; key++ ) {
                 sorted[ key + 1 ] = items[ a[key] ];
             }
+
             return sorted;
 
         }
     };
 
+    /**
+     * Bridge
+     *
+     * @param  {String} method
+     *
+     * @return {Function} chosen method
+     */
     $.fn.tagimator = function( method ) {
-    
+
         if ( methods[ method ] ) {
+            // Initialize
+            methods.init.apply( this, Array.prototype.slice.call( arguments, 1 ) );
             return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
         } else if ( typeof method === 'object' || ! method ) {
             return methods.init.apply( this, arguments );
         } else {
             $.error( 'Method ' +  method + ' does not exist on jQuery.tagimator' );
         }
-  };
+    };
 
 })( jQuery );

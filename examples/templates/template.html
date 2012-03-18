@@ -1,0 +1,82 @@
+<html>
+    <head>
+        
+        <!-- This is optional if CSS is seperated and hosted else use style tag -->
+        <link rel="stylesheet" href="css/template.css">
+        
+        <!-- This has no effect as all javascript is stripped due to security reasons -->    
+        <script>
+            alert('hej');
+        </script>
+
+        <style>
+
+            .background {
+                background-color: #000;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+
+            .title {
+                background-color: orange;
+                padding: 10px;
+                position: relative;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .slider {
+                background-color: green;
+                padding: 10px;
+            }
+
+            .loop {
+                color: yellow;
+            }
+
+            footer {
+                position: absolute;
+                bottom:0;
+                left: 0;
+                right: 0;
+                line-height: 30px;
+                background-color: #FE57A1;
+                color: #fff;
+                font-weight: bold;
+                text-align: center;
+            }
+
+        </style>
+    
+    </head>
+    <body>
+
+        <div class="background">
+            <div data-fx-step="1" data-fx="fade" data-fx-speed="600" class="title">
+               The vacation of your dreams
+            </div>
+
+             <div data-fx-step="2" data-fx="drop" data-fx-direction="right" data-fx-out-goto=".fader" class="slider fx-hidden">
+                <div>
+                    I slide in and out, and after each call fader box to the right
+                </div>
+            </div>
+
+            <div data-fx-step="3" data-fx="fade" data-fx-out-goto="self" class="loop fx-hidden">
+                <div>
+                    I fade and loop myself...like forever :)
+                </div>
+            </div>
+
+            <footer data-fx-step="4" data-fx="fade">
+                <div>
+                    I'm fading up on 4th step but NOT looping!
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

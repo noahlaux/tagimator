@@ -1,0 +1,110 @@
+ <html>
+    <head>
+        
+        <!-- This is optional if CSS is seperated and hosted else use style tag -->
+        <link rel="stylesheet" href="css/template.css">
+        
+        <!-- This has no effect as all javascript is stripped due to security reasons -->    
+        <script>
+            alert('hej');
+        </script>
+
+        <style>
+
+            .transition-demo {
+                background-color: #000;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                font-size: 80%;
+            }
+
+            header {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                line-height: 50px;
+                background-color: #700000;
+                text-align: center;
+                font-size: 3em;
+                font-weight: bold;
+                color: #FF9494;
+            }
+
+            .content {
+                line-height: 100px;
+                background-color: orange;
+                color: #fff;
+                text-align: center;
+                overflow: hidden;
+            }
+
+            .content.dark {
+                background-color: #222;
+            }
+
+                .content .inner {
+                    width: 115px;
+                    background-color: #444;
+                    float: left;
+                    margin: 5px;
+                    line-height: 20px;
+                    color: #fff;
+                }
+
+            footer {
+                position: absolute;
+                bottom:0;
+                left: 0;
+                right: 0;
+                line-height: 50px;
+                background-color: #FE57A1;
+                color: #fff;
+                font-weight: bold;
+                text-align: center;
+            }
+
+        </style>
+    
+    </head>
+    <body>
+
+ <div class="transition-demo" >
+
+    <header data-fx-step="1" data-fx="slide" data-fx-direction="up">
+        .: Nice title :.
+    </header>
+
+    <div data-fx-step="2" data-fx="fade" class="content" role="main">
+        Lorem ipsum stuffy
+    </div>
+
+    <div data-fx-step="2" data-fx="slide" class="content dark" role="main">
+        <div data-fx-step="3" data-fx="drop" data-fx-speed="200" class="inner">
+            inner
+        </div>
+        <div data-fx-step="4" data-fx="drop" data-fx-speed="200" class="inner">
+            inner
+        </div>
+        <div data-fx-step="5" data-fx="drop" data-fx-speed="200" class="inner">
+            inner
+        </div>
+        <div data-fx-step="6" data-fx="drop" data-fx-speed="200" class="inner">   
+            inner
+        </div>
+    </div>
+
+    <footer data-fx-step="1" data-fx="slide" data-fx-direction="bottom" >
+        <!-- Nested fx -->
+        <div  data-fx-step="7" data-fx="slide" data-fx-direction="left" data-fx-easing="easeOutBounce" >
+            The bouncing footer YAY!
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>
