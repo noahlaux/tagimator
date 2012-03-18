@@ -1,5 +1,5 @@
 /**
- * jQuery tagimator
+ * jQuery tagimator (http://github.com/noahlaux/tagimator)
  *
  * @version 1.1
  *
@@ -39,7 +39,7 @@
                 methods.onFinish        = ( options.onFinish ) ? options.onFinish : null;
             }
 
-            // Return for changing
+            // Return for chaining
             return this;
 
         },

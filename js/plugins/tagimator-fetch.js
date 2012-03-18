@@ -1,5 +1,5 @@
 /**
- * Tagimator plugin - Fetch
+ * Tagimator plugin - Fetch (http://github.com/noahlaux/tagimator)
  *
  * Makes tagimator able to fetch external pages with tagimator markup
  *
@@ -9,7 +9,6 @@
  * @dependency
  *  jQuery.tagimator (http://github.com/noahlaux/tagimator)
  */
-
 ( function( $ , namespace, undefined ){
 
     var methods = {
@@ -27,7 +26,7 @@
                 if ( segments.length > 0 ) {
                     
                     // Make segments relative to make bounderies, and hide overflown content
-                    // TODO make this optional
+                    // TODO make this optional for more flexible setup
                     segments
                         .css({
                             'position': 'relative',
