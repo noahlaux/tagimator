@@ -58,18 +58,19 @@
             renderFragment: function( fragment ) {
 
                 // Generate unique identifier used for CSS and tag id
-                var self = this,
-                    guid = this.getGuid();
+                var self        = this,
+                    guid        = this.getGuid(),
+                    $fragments  = $( fragment );
 
-                $( fragment )
+                $fragment
                     .attr('id', 'tagimator_' + guid )
                     .addClass('fx-rendered');
 
-                this.fetch( $( fragment ).data('url'), function( html ) {
+                this.fetch( $fragment.data('url'), function( html ) {
                     
                     $('head').find('style').append( self.parseCSS( html, guid ) );
 
-                    $( fragment )
+                    $fragment
                         // Put fragment into segment
                         .append( self.parseHTML( html ) )
                         // Start fragment
