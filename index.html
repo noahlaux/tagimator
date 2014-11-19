@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Tagimator : tagimator is a alternative approach to step based page element transitions, driven by special tag attributes in your HTML markup.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Tagimator</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/noahlaux/tagimator">View on GitHub</a>
+
+          <h1 id="project_title">Tagimator</h1>
+          <h2 id="project_tagline">tagimator is a alternative approach to step based page element transitions, driven by special tag attributes in your HTML markup.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/noahlaux/tagimator/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/noahlaux/tagimator/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="tagimator" class="anchor" href="#tagimator" aria-hidden="true"><span class="octicon octicon-link"></span></a>tagimator</h1>
+
+<p>tagimator is a alternative approach to step based page element transitions, driven by special tag attributes in your HTML markup.</p>
+
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- Simple tagimator example markup --&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">data-fx-step</span>=<span class="pl-s1"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-fx</span>=<span class="pl-s1"><span class="pl-pds">"</span>fade<span class="pl-pds">"</span></span> <span class="pl-e">data-fx-speed</span>=<span class="pl-s1"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span>&gt;
+    This is a box...YAY!
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Easy to use step based transitions (just basic HTML knowledge needed).</li>
+<li>Dead simple setup, include a javascript file, execute one command and BAM!</li>
+<li>VERY small footprint (1.02KB gzipped)</li>
+<li>Uses GPU accelerated transitions where possible for great perfomance across platforms (Mobile too!).</li>
+<li><p>Download or build your own custom transision based on <a href="http://jqueryui.com/demos/effect/">jQuery UI effects plugins</a> standard. The current available fx options are provided with the project for your convinience.</p></li>
+<li><p>Uses standard 'data' attributes, so no messy warnings in your IDE.</p></li>
+<li>Oh did I mention it works splendid in all browsers you throw at it ???</li>
+</ul>
+
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick start</h2>
+
+<p><strong>HTML</strong></p>
+
+<div class="highlight highlight-html"><pre>&lt;!doctype html&gt;
+&lt;<span class="pl-ent">body</span>&gt;
+    &lt;<span class="pl-ent">head</span>&gt;
+        &lt;<span class="pl-ent">title</span>&gt;tagimator simple demo&lt;/<span class="pl-ent">title</span>&gt;
+    &lt;/<span class="pl-ent">head</span>&gt;
+    &lt;<span class="pl-ent">body</span>&gt;
+        <span class="pl-c">&lt;!-- standard transistion use default speed, easing etc --&gt;</span>
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">data-fx-step</span>=<span class="pl-s1"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-fx</span>=<span class="pl-s1"><span class="pl-pds">"</span>fade<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>box<span class="pl-pds">"</span></span>&gt;
+            This is a box
+        &lt;/<span class="pl-ent">div</span>&gt;
+        <span class="pl-c">&lt;!-- Supports nested structures too --&gt;</span>
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">data-fx-step</span>=<span class="pl-s1"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> <span class="pl-e">data-fx</span>=<span class="pl-s1"><span class="pl-pds">"</span>fade<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>box<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">data-fx-step</span>=<span class="pl-s1"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">data-fx</span>=<span class="pl-s1"><span class="pl-pds">"</span>slide<span class="pl-pds">"</span></span> <span class="pl-e">data-fx-direction</span>=<span class="pl-s1"><span class="pl-pds">"</span>left<span class="pl-pds">"</span></span> <span class="pl-e">data-fx-speed</span>=<span class="pl-s1"><span class="pl-pds">"</span>800<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>inner<span class="pl-pds">"</span></span>&gt;
+                Nested box
+            &lt;/<span class="pl-ent">div</span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">data-fx-step</span>=<span class="pl-s1"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">data-fx</span>=<span class="pl-s1"><span class="pl-pds">"</span>slide<span class="pl-pds">"</span></span> <span class="pl-e">data-fx-direction</span>=<span class="pl-s1"><span class="pl-pds">"</span>right<span class="pl-pds">"</span></span> <span class="pl-e">data-fx-speed</span>=<span class="pl-s1"><span class="pl-pds">"</span>800<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>inner<span class="pl-pds">"</span></span>&gt;
+                Nested box 2
+            &lt;/<span class="pl-ent">div</span>&gt;
+        &lt;/<span class="pl-ent">div</span>&gt;​
+    &lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+
+<p><strong>Javascript</strong></p>
+
+<p>tagimator has two main methods <code>show</code> &amp; <code>hide</code>, which either runs the transitions and <strong>show</strong> the effected HTML elements, or <strong>hide</strong> them which, by default (can be changed by proving options), runs the transitions in the exact opposit order of which they were shown.</p>
+
+<p>To start transitions on the above HTML simply include the following in your javascript:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// Wait until jqeury has loaded and DOM is ready</span>
+$( <span class="pl-st">function</span>(){
+    <span class="pl-c">// Run transitions</span>
+    $(<span class="pl-s1"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>).tagimator(<span class="pl-s1"><span class="pl-pds">'</span>show<span class="pl-pds">'</span></span>);
+});</pre></div>
+
+<p><strong>see working examples here:</strong> </p>
+
+<ul>
+<li><a href="http://jsfiddle.net/noahlaux/sdEJh/">simple demo on fiddlejs</a></li>
+<li><a href="http://jsfiddle.net/noahlaux/KnwLa/">advanced demo on fiddlejs</a></li>
+</ul>
+
+
+
+<h2>
+<a id="advanced-uses" class="anchor" href="#advanced-uses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced uses</h2>
+
+<p>For a little more advanced use, you can fx hook into the callback fired when all transitions have finished:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// Wait until jqeury has loaded and DOM is ready</span>
+$( <span class="pl-st">function</span>(){
+    <span class="pl-c">// Run transitions</span>
+    $(<span class="pl-s1"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>).tagimator(<span class="pl-s1"><span class="pl-pds">'</span>show<span class="pl-pds">'</span></span>, {
+        <span class="pl-c">// This callback is fired when all transistions have finished</span>
+        <span class="pl-en">onFinish</span>: <span class="pl-st">function</span>() {
+            <span class="pl-s3">alert</span>(<span class="pl-s1"><span class="pl-pds">'</span>All transitions done<span class="pl-pds">'</span></span>);
+        }
+    });
+});</pre></div>
+
+<p>For a more custum setup you can provide options, which are all optional and have default fallbacks:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// Wait until jqeury has loaded and DOM is ready</span>
+$( <span class="pl-st">function</span>(){
+
+    <span class="pl-c">// Run transitions</span>
+    $(<span class="pl-s1"><span class="pl-pds">'</span>.transition-demo<span class="pl-pds">'</span></span>).tagimator(<span class="pl-s1"><span class="pl-pds">'</span>show<span class="pl-pds">'</span></span>, {
+        speed<span class="pl-k">:</span>         <span class="pl-c1">500</span>, <span class="pl-c">// Default is 1000</span>
+        fx<span class="pl-k">:</span>         <span class="pl-s1"><span class="pl-pds">'</span>slide<span class="pl-pds">'</span></span>, <span class="pl-c">// default is fade</span>
+        easing<span class="pl-k">:</span>     <span class="pl-s1"><span class="pl-pds">'</span>easeInCubic<span class="pl-pds">'</span></span>, <span class="pl-c">// default is easeInOutCubic,</span>
+        <span class="pl-c">// Fired before a step have been finished, and pass the current step and stack as arguments</span>
+        <span class="pl-en">onBeforeStep</span>: <span class="pl-st">function</span>( <span class="pl-vpf">step</span>, <span class="pl-vpf">stack</span> ) {
+            <span class="pl-c">// Log current step</span>
+            <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>step <span class="pl-pds">'</span></span> <span class="pl-k">+</span> step <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span> done<span class="pl-pds">'</span></span>);
+
+            <span class="pl-c">// Evaulate if we are on step 1 (remember steps are strings!)</span>
+            <span class="pl-k">if</span> ( step <span class="pl-k">===</span> <span class="pl-s1"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> ) {
+                <span class="pl-c">// Since a fx stack step holds an array of items, make sure we only want the first here, which is the title</span>
+                $(stack[<span class="pl-c1">0</span>].el).html(<span class="pl-s1"><span class="pl-pds">'</span>.: New inserted title :.<span class="pl-pds">'</span></span>);
+            }
+        },
+        <span class="pl-c">// Fired when all transistions have finished</span>
+        <span class="pl-en">onFinish</span>: <span class="pl-st">function</span>() {
+            <span class="pl-s3">alert</span>(<span class="pl-s1"><span class="pl-pds">'</span>All transitions done<span class="pl-pds">'</span></span>);
+        }
+    });
+    ​
+});</pre></div>
+
+<h2>
+<a id="available-event-hooks" class="anchor" href="#available-event-hooks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available event hooks</h2>
+
+<ul>
+<li>
+<code>onBeforeStep( step, stack )</code> Fired before a step is about to render, and pass the current step and stack as arguments</li>
+<li>
+<code>onAfterStep( step, stack )</code> Fired when a step have been finished, and pass the current step and stack as arguments</li>
+<li>
+<code>onFinish</code> Fired when all transitions have finished</li>
+</ul>
+
+<h2>
+<a id="the-stack-object" class="anchor" href="#the-stack-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>The stack object</h2>
+
+<p>When you hook into either <code>onBeforeStep</code> or <code>onAfterStep</code> you're passed a <code>stack</code> array with objects representing the current stack items. Here's the layout:</p>
+
+<div class="highlight highlight-javascript"><pre>{
+    el<span class="pl-k">:</span>         {<span class="pl-s3">Object</span>},       <span class="pl-c">// HTML element</span>
+    fx<span class="pl-k">:</span>         {<span class="pl-s3">String</span>},       <span class="pl-c">// Transition name (must be registered or you'll be warned) (default: 'fade')</span>
+    speed<span class="pl-k">:</span>      {<span class="pl-s3">Number</span>},       <span class="pl-c">// fx speed (default: 1000)</span>
+    options<span class="pl-k">:</span>    {
+        direction<span class="pl-k">:</span>  {<span class="pl-s3">String</span>},   <span class="pl-c">// Direction of slide (default: 'left')</span>
+        easing<span class="pl-k">:</span>     {<span class="pl-s3">String</span>}    <span class="pl-c">// Easing to use (default: 'easeInOutCubic')</span>
+    }
+}</pre></div>
+
+<h2>
+<a id="available-attributes" class="anchor" href="#available-attributes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available attributes</h2>
+
+<p><code>data-fx</code>, <code>data-fx-step</code>, <code>data-fx-speed</code>, <code>data-fx-direction</code>, <code>data-fx-easing</code></p>
+
+<h2>
+<a id="more-info" class="anchor" href="#more-info" aria-hidden="true"><span class="octicon octicon-link"></span></a>More info</h2>
+
+<ul>
+<li>Source: <a href="http://github.com/noahlaux/tagimator">http://github.com/noahlaux/tagimator</a>
+</li>
+<li>Docs: <a href="http://github.com/noahlaux/tagimator/wiki">http://github.com/noahlaux/tagimator/wiki</a>
+</li>
+<li>Twitter: <a href="http://twitter.com/noahlaux">http://twitter.com/noahlaux</a>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<h3>
+<a id="major-components" class="anchor" href="#major-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Major components:</h3>
+
+<ul>
+<li>jQuery: MIT/GPL license</li>
+</ul>
+
+<h3>
+<a id="everything-else" class="anchor" href="#everything-else" aria-hidden="true"><span class="octicon octicon-link"></span></a>Everything else:</h3>
+
+<p>The Unlicense (aka: public domain)</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Tagimator maintained by <a href="https://github.com/noahlaux">noahlaux</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
